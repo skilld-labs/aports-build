@@ -1,5 +1,5 @@
 NAME = skilldlabs/aports-build
-TAGS ?=  35 36 37 38 edge
+TAGS ?=  35 36 37 38 39 edge
 
 .PHONY: all build push
 
