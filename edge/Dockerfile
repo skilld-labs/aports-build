@@ -1,7 +1,7 @@
 FROM alpine:edge
 
 RUN set -x &&\
-  apk add --no-cache --upgrade alpine-sdk &&\
+  apk add --no-cache --upgrade alpine-sdk sudo &&\
   adduser -D skilld &&\
   echo "skilld    ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers &&\
   addgroup skilld abuild &&\
