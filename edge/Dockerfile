@@ -1,9 +1,11 @@
 FROM alpine:edge
 
 RUN set -x &&\
-  apk add --no-cache --upgrade alpine-sdk sudo && apk upgrade --no-cache &&\
+  apk add --no-cache --upgrade alpine-sdk doas && apk upgrade --no-cache &&\
   adduser -D skilld &&\
-  echo "skilld    ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers &&\
+  echo "permit nopass skilld" >> /etc/doas.d/skilld.conf &&\
+  echo "permit nopass 0" >> /etc/doas.d/root.conf &&\
+  ln -s doas /usr/bin/sudo &&\
   addgroup skilld abuild &&\
   mkdir -p /var/cache/distfiles &&\
   chmod a+w /var/cache/distfiles &&\
@@ -14,4 +16,4 @@ RUN set -x &&\
 VOLUME /mnt
 WORKDIR /mnt
 USER skilld
-CMD ["ash"]
+CMD ["/bin/ash"]
