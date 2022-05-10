@@ -2,6 +2,7 @@ FROM alpine:edge
 
 RUN set -x &&\
   apk add --no-cache --upgrade alpine-sdk doas && apk upgrade --no-cache &&\
+  echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories &&\
   adduser -D skilld &&\
   echo "permit nopass skilld" >> /etc/doas.d/skilld.conf &&\
   echo "permit nopass 0" >> /etc/doas.d/root.conf &&\
